@@ -1,13 +1,13 @@
 # StickyNote
 
+Bạn có thể truy cập dự án tại đây:  
+[StickyNote](https://chunhanhoa.github.io/StickyNote/)
+
 Chào bạn đến với **StickyNote** – một dự án nhỏ giúp bạn nhận những câu cổ vũ dễ thương mỗi ngày! 💖
 
 ## Mô tả
 StickyNote là một ứng dụng web đơn giản cung cấp **một câu affirmations** (lời nhắc nhở tích cực) mỗi ngày, giúp bạn khởi đầu ngày mới với năng lượng tích cực, đầy yêu thương và động lực. Bạn chỉ cần mở trang và một câu "cổ vũ" dễ thương sẽ xuất hiện, giúp bạn có thêm niềm tin vào bản thân.
 
-## Link Web
-Bạn có thể truy cập dự án tại đây:  
-[StickyNote - Web Demo](https://chunhanhoa.github.io/StickyNote/)
 
 ## Tính năng
 - Cung cấp **một câu cổ vũ** mỗi ngày dựa trên ngày hiện tại.

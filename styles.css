@@ -80,6 +80,7 @@ body::after {
     height: 100vh;
     perspective: 1000px;
     z-index: 10;
+    padding-bottom: 40px;
 }
 
 .sticky-note {
@@ -257,4 +258,38 @@ button:active {
     #affirmation {
         font-size: 2.4em;
     }
+}
+
+/* Thiết lập footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 8px 0;
+    text-align: center;
+    font-size: 0.8em;
+    color: #6a4c93;
+    font-family: 'Quicksand', sans-serif;
+    z-index: 50;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.05);
+}
+
+.footer-content {
+    margin: 0 auto;
+}
+
+footer a {
+    color: #ff758f;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #ff5777;
+    text-decoration: underline;
 }
