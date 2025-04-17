@@ -12,7 +12,6 @@ StickyNote là một ứng dụng web đơn giản cung cấp **một câu affir
 ## Tính năng
 - Cung cấp **một câu cổ vũ** mỗi ngày dựa trên ngày hiện tại.
 - Giao diện dễ thương, kiểu như **sticky note**, khiến bạn cảm thấy thư giãn và dễ chịu.
-- Có thể **random ảnh nền** nhẹ nhàng cho mỗi lần tải trang.
 - **Responsive** trên nhiều thiết bị, dễ dàng sử dụng trên máy tính và điện thoại.
 
 ## Công nghệ sử dụng
@@ -29,8 +28,6 @@ StickyNote là một ứng dụng web đơn giản cung cấp **một câu affir
 
 ## Cảm ơn
 
-Cảm ơn bạn đã ghé qua dự án của mình. Nếu bạn thấy thú vị, đừng quên star và fork dự án để chia sẻ với bạn bè nhé! 🥰
-
-Nếu có bất kỳ câu hỏi hay đóng góp nào, đừng ngần ngại mở issue hoặc gửi pull request!
+Cảm ơn bạn đã ghé qua dự án của mình. Nếu bạn thấy thú vị, đừng quên chia sẻ với bạn bè nhé! 🥰
 
 Chúc bạn có một ngày tuyệt vời nhaaa 🌸💪
