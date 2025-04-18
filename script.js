@@ -136,7 +136,10 @@ const affirmations = [
   "Đừng để deadline làm tim bạn dead – take it easy như cách bạn reply tin nhắn vậy!",
   "Không ai perfect cả – nhưng bạn là phiên bản có lỗi đáng yêu nhất!",
   "Người ta nói 'keep going', còn mình nói 'keep glowing' nha bạn ơi!",
-  "Hôm nay vibes của bạn: Chill như đá, nhưng ấm như trà!"
+  "Hôm nay vibes của bạn: Chill như đá, nhưng ấm như trà!",
+  "Mọi thứ đều có vẻ đẹp, nhưng không phải ai cũng nhìn thấy nó, không phải vì đẹp nên mới thích, mà vì thích nên mới thấy đẹp." ,
+  "Thành phố này muốn xô cậu ngã để lớn, Mình chỉ ước cậu về bình an...",
+  "Một vạt nắng nằm quên trên bụi cỏ Trời chưa mưa, đất đã muốn mềm lòng Sỏi đá cũng đa tình, em thấy đó Huống chi là sương khói, huống chi anh."
 ];
 
 // Lấy các phần tử DOM
