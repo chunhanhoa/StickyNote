@@ -1,7 +1,7 @@
 # StickyNote
 
-Bạn có thể truy cập dự án tại đây:  
-[StickyNote](https://chunhanhoa.github.io/StickyNote/)
+Bạn có thể truy cập dự án tại đây:
+🔗 [StickyNote](https://chunhanhoa.github.io/StickyNote)
 
 Chào bạn đến với **StickyNote** – một dự án nhỏ giúp bạn nhận những câu cổ vũ dễ thương mỗi ngày! 💖
 
