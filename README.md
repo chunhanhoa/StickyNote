@@ -1,33 +1,39 @@
 # StickyNote
 
-Bạn có thể truy cập dự án tại đây:  
-[StickyNote](https://chunhanhoa.github.io/StickyNote/)
+Bạn có thể truy cập dự án tại đây nè:>  [StickyNote](https://chunhanhoa.github.io/StickyNote/)
 
-Chào bạn đến với **StickyNote** – một dự án nhỏ giúp bạn nhận những câu cổ vũ dễ thương mỗi ngày! 💖
+## Giới thiệu
+
+Chào mừng bạn đến với **StickyNote** – dự án nhỏ mang đến những thông điệp tích cực mỗi ngày!💖
 
 ## Mô tả
-StickyNote là một ứng dụng web đơn giản cung cấp **một câu affirmations** (lời nhắc nhở tích cực) mỗi ngày, giúp bạn khởi đầu ngày mới với năng lượng tích cực, đầy yêu thương và động lực. Bạn chỉ cần mở trang và một câu "cổ vũ" dễ thương sẽ xuất hiện, giúp bạn có thêm niềm tin vào bản thân.
 
+StickyNote là ứng dụng web đơn giản hiển thị **câu khẳng định tích cực** (affirmations) hàng ngày, giúp bạn bắt đầu ngày mới với năng lượng tích cực và động lực.
 
 ## Tính năng
-- Cung cấp **một câu cổ vũ** mỗi ngày dựa trên ngày hiện tại.
-- Giao diện dễ thương, kiểu như **sticky note**, khiến bạn cảm thấy thư giãn và dễ chịu.
-- **Responsive** trên nhiều thiết bị, dễ dàng sử dụng trên máy tính và điện thoại.
+
+- Hiển thị **một câu khẳng định tích cực** mỗi ngày, dựa trên ngày hiện tại
+- Giao diện thân thiện kiểu **sticky note** tạo cảm giác ấm áp và dễ chịu
+- Thiết kế **tương thích** với nhiều thiết bị, dễ dàng sử dụng trên máy tính lẫn điện thoại di động
 
 ## Công nghệ sử dụng
-- **HTML**: Cấu trúc của trang web.
-- **CSS**: Thiết kế và giao diện.
-- **JavaScript**: Tạo hiệu ứng động và chọn câu cổ vũ ngẫu nhiên.
 
-## Cách cài đặt
-Để sử dụng dự án này trên máy tính của bạn, chỉ cần làm theo các bước sau:
-1. Clone hoặc tải xuống repository:
+- **HTML**: Xây dựng cấu trúc trang web
+- **CSS**: Tạo giao diện và hiệu ứng thị giác
+- **JavaScript**: Xử lý logic và hiển thị câu khẳng định phù hợp với ngày
+
+## Hướng dẫn cài đặt
+
+Để sử dụng StickyNote trên máy tính cá nhân:
+
+1. Clone hoặc tải xuống mã nguồn:
    ```bash
    git clone https://github.com/Chunhanhoa/StickyNote.git
-2. Mở file index.html trên trình duyệt của bạn để trải nghiệm!
+   ```
+2. Mở file index.html bằng trình duyệt web để trải nghiệm!
 
-## Cảm ơn
+## Lời cảm ơn
 
-Cảm ơn bạn đã ghé qua dự án của mình. Nếu bạn thấy thú vị, đừng quên chia sẻ với bạn bè nhé! 🥰
+Cảm ơn bạn đã quan tâm đến dự án nhỏ này. Nếu thấy hữu ích, hãy chia sẻ với bạn bè và người thân nhé! 🥰
 
-Chúc bạn có một ngày tuyệt vời nhaaa 🌸💪
+Chúc bạn một ngày tràn đầy năng lượng tích cực! 🌸✨
