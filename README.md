@@ -1,6 +1,6 @@
 # StickyNote
 
-Bạn có thể truy cập dự án tại đây nè:>  [StickyNote](https://chunhanhoa.github.io/StickyNote/)
+Bạn có thể truy cập dự án tại đây nè :>  [StickyNote](https://chunhanhoa.github.io/StickyNote/)
 
 ## Giới thiệu
 
