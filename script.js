@@ -273,10 +273,238 @@ newAffirmationButton.addEventListener("click", function () {
   }, 300);
 });
 
+// Hệ thống tracking visitors
+class VisitorTracker {
+    constructor() {
+        this.storageKey = 'stickynote_visitors';
+        this.sessionKey = 'stickynote_current_session';
+        this.init();
+    }
+
+    init() {
+        this.trackVisit();
+        this.updateVisitorCount();
+        this.setupAdminPanel();
+    }
+
+    // Tạo ID duy nhất cho session
+    generateSessionId() {
+        return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Lấy thông tin IP (ước tính) từ timezone và ngôn ngữ
+    async getVisitorInfo() {
+        const info = {
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            screen: `${screen.width}x${screen.height}`,
+            viewport: `${window.innerWidth}x${window.innerHeight}`,
+            referrer: document.referrer || 'Direct',
+            sessionId: this.generateSessionId()
+        };
+
+        // Thử lấy IP từ service bên ngoài
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            info.ip = data.ip;
+        } catch (error) {
+            info.ip = 'Không xác định';
+        }
+
+        return info;
+    }
+
+    // Tracking lượt truy cập
+    async trackVisit() {
+        const currentSession = sessionStorage.getItem(this.sessionKey);
+        
+        if (!currentSession) {
+            const visitorInfo = await this.getVisitorInfo();
+            sessionStorage.setItem(this.sessionKey, JSON.stringify(visitorInfo));
+            
+            // Lưu vào localStorage
+            const visitors = this.getStoredVisitors();
+            visitors.push(visitorInfo);
+            localStorage.setItem(this.storageKey, JSON.stringify(visitors));
+        }
+    }
+
+    // Lấy danh sách visitors đã lưu
+    getStoredVisitors() {
+        const stored = localStorage.getItem(this.storageKey);
+        return stored ? JSON.parse(stored) : [];
+    }
+
+    // Cập nhật số lượt truy cập
+    updateVisitorCount() {
+        const visitors = this.getStoredVisitors();
+        const countElement = document.getElementById('visitor-count');
+        if (countElement) {
+            countElement.innerHTML = `Đã có <strong>${visitors.length}</strong> lượt truy cập`;
+        }
+    }
+
+    // Thiết lập panel admin
+    setupAdminPanel() {
+        const modal = document.getElementById('admin-modal');
+        const closeBtn = document.querySelector('.close-admin');
+
+        // Phím tắt Ctrl+Shift+A
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                this.showAdminPanel();
+            }
+        });
+
+        // Đóng modal
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
+
+    // Hiển thị panel admin
+    showAdminPanel() {
+        const modal = document.getElementById('admin-modal');
+        const adminInfo = document.getElementById('admin-info');
+        const visitors = this.getStoredVisitors();
+
+        // Tạo thống kê tổng quan
+        const stats = this.generateStats(visitors);
+        
+        adminInfo.innerHTML = `
+            <div class="stats-summary">
+                <h3>📊 Thống kê tổng quan</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.totalVisits}</div>
+                        <div class="stat-label">Tổng lượt truy cập</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.todayVisits}</div>
+                        <div class="stat-label">Hôm nay</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.uniqueIPs}</div>
+                        <div class="stat-label">IP duy nhất</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">${stats.topCountry}</div>
+                        <div class="stat-label">Quốc gia phổ biến</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>👥 Chi tiết lượt truy cập (${visitors.length} gần nhất)</h3>
+            <div style="max-height: 400px; overflow-y: auto;">
+                ${visitors.slice(-20).reverse().map((visitor, index) => `
+                    <div class="visitor-info">
+                        <strong>Lượt ${visitors.length - index}:</strong><br>
+                        <strong>⏰ Thời gian:</strong> ${new Date(visitor.timestamp).toLocaleString('vi-VN')}<br>
+                        <strong>🌍 IP:</strong> ${visitor.ip}<br>
+                        <strong>🗺️ Timezone:</strong> ${visitor.timezone}<br>
+                        <strong>💻 Thiết bị:</strong> ${visitor.screen} (${this.getDeviceType(visitor.userAgent)})<br>
+                        <strong>🌐 Trình duyệt:</strong> ${this.getBrowserInfo(visitor.userAgent)}<br>
+                        <strong>🔗 Nguồn:</strong> ${visitor.referrer}<br>
+                        <strong>🆔 Session:</strong> ${visitor.sessionId}
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <button onclick="visitorTracker.clearData()" style="background: #ff6b6b; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    🗑️ Xóa tất cả dữ liệu
+                </button>
+                <button onclick="visitorTracker.exportData()" style="background: #51cf66; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+                    📥 Xuất dữ liệu
+                </button>
+            </div>
+        `;
+
+        modal.style.display = 'block';
+    }
+
+    // Tạo thống kê
+    generateStats(visitors) {
+        const today = new Date().toDateString();
+        const todayVisits = visitors.filter(v => new Date(v.timestamp).toDateString() === today).length;
+        const uniqueIPs = new Set(visitors.map(v => v.ip)).size;
+        const countries = visitors.map(v => v.timezone.split('/')[0]);
+        const topCountry = this.getMostFrequent(countries) || 'N/A';
+
+        return {
+            totalVisits: visitors.length,
+            todayVisits,
+            uniqueIPs,
+            topCountry
+        };
+    }
+
+    // Tìm phần tử xuất hiện nhiều nhất
+    getMostFrequent(arr) {
+        const freq = {};
+        arr.forEach(item => freq[item] = (freq[item] || 0) + 1);
+        return Object.keys(freq).reduce((a, b) => freq[a] > freq[b] ? a : b);
+    }
+
+    // Xác định loại thiết bị
+    getDeviceType(userAgent) {
+        if (/Mobile|Android|iPhone/i.test(userAgent)) return 'Mobile';
+        if (/Tablet|iPad/i.test(userAgent)) return 'Tablet';
+        return 'Desktop';
+    }
+
+    // Lấy thông tin trình duyệt
+    getBrowserInfo(userAgent) {
+        if (userAgent.includes('Chrome')) return 'Chrome';
+        if (userAgent.includes('Firefox')) return 'Firefox';
+        if (userAgent.includes('Safari')) return 'Safari';
+        if (userAgent.includes('Edge')) return 'Edge';
+        return 'Khác';
+    }
+
+    // Xóa tất cả dữ liệu
+    clearData() {
+        if (confirm('Bạn có chắc muốn xóa tất cả dữ liệu tracking?')) {
+            localStorage.removeItem(this.storageKey);
+            sessionStorage.removeItem(this.sessionKey);
+            this.updateVisitorCount();
+            alert('Đã xóa tất cả dữ liệu!');
+            document.getElementById('admin-modal').style.display = 'none';
+        }
+    }
+
+    // Xuất dữ liệu
+    exportData() {
+        const visitors = this.getStoredVisitors();
+        const dataStr = JSON.stringify(visitors, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `stickynote_visitors_${new Date().toISOString().split('T')[0]}.json`;
+        link.click();
+    }
+}
+
+// Khởi tạo visitor tracker
+
 // Khi trang web được tải
 window.addEventListener("DOMContentLoaded", () => {
-  displayDailyContent();
+    displayDailyContent();
+    
+    // Khởi tạo visitor tracking
+    visitorTracker = new VisitorTracker();
 
-  // Thêm hiệu ứng cho affirmation
-  affirmationElement.style.transition = "opacity 0.3s ease";
+    // Thêm hiệu ứng cho affirmation
+    affirmationElement.style.transition = "opacity 0.3s ease";
 });

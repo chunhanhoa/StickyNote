@@ -21,21 +21,31 @@
             <div class="affirmation-content">
                 <p id="affirmation"></p>
             </div>
-            <div class="footer">
-                <button id="new-affirmation">
-                    <i class="fas fa-heart"></i> Câu mới
-                </button>
-            </div>
+            <button id="new-affirmation">
+                <i class="fas fa-heart"></i> Câu mới
+            </button>
         </div>
     </div>
 
     <!-- Footer ở dưới cùng -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
-            <p>© 2025 - <a href="https://www.instagram.com/c.nhoa/" target="_blank">c.nhoa</a></p>
+            <p>© 2025 - <a href="https://www.instagram.com/c.nhoa/" target="_blank">c.nhoa</a> | 
+            <span id="visitor-count">Đã có <strong>0</strong> lượt truy cập</span></p>
         </div>
     </footer>
     
+    <!-- Modal cho admin -->
+    <div id="admin-modal" class="admin-modal">
+        <div class="admin-content">
+            <span class="close-admin">&times;</span>
+            <h2>🔐 Thông tin Admin</h2>
+            <div id="admin-info"></div>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>
