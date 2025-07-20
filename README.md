@@ -22,16 +22,6 @@ StickyNote là ứng dụng web đơn giản hiển thị **câu khẳng định
 - **CSS**: Tạo giao diện và hiệu ứng thị giác
 - **JavaScript**: Xử lý logic và hiển thị câu khẳng định phù hợp với ngày
 
-## Hướng dẫn cài đặt
-
-Để sử dụng StickyNote trên máy tính cá nhân:
-
-1. Clone hoặc tải xuống mã nguồn:
-   ```bash
-   git clone https://github.com/Chunhanhoa/StickyNote.git
-   ```
-2. Mở file index.html bằng trình duyệt web để trải nghiệm!
-
 ## Lời cảm ơn
 
 Cảm ơn bạn đã quan tâm đến dự án nhỏ này. Nếu thấy hữu ích, hãy chia sẻ với bạn bè và người thân nhé! 🥰
